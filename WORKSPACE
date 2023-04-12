@@ -21,4 +21,4 @@ BAZEL_VERSION_SHA = "1a64c807716e10c872f1618852d95f4893d81667fe6e691ef696489103c
 
 load("//tools/workspace:default.bzl", "add_default_repositories")
 
-add_default_repositories(excludes=["opencv"])
+add_default_repositories(excludes=["opencv", "log4cpp"])
