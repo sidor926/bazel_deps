@@ -14,9 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@com_github_mjbots_bazel_deps//tools/workspace:autoconf_config.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:autoconf_config.bzl",
      "autoconf_config", "autoconf_standard_defines")
-load("@com_github_mjbots_bazel_deps//tools/workspace:template_file.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:template_file.bzl",
      "template_file")
 
 package(default_visibility = ["//visibility:public"])
@@ -756,25 +756,25 @@ template_file(
     name = "glib/glibconfig.h",
     src = "glib/glibconfig.h.in",
     substitution_list = select({
-        "@com_github_mjbots_bazel_deps//conditions:long_8bytes" : [
+        "@com_github_sidor926_bazel_deps//conditions:long_8bytes" : [
             "@glib_void_p@=8",
             "@glib_long@=8",
         ],
-        "@com_github_mjbots_bazel_deps//conditions:long_4bytes" : [
+        "@com_github_sidor926_bazel_deps//conditions:long_4bytes" : [
             "@glib_void_p@=4",
             "@glib_long@=4",
         ],
     }) + select({
-        "@com_github_mjbots_bazel_deps//conditions:sizet_8bytes" : [
+        "@com_github_sidor926_bazel_deps//conditions:sizet_8bytes" : [
             "@glib_size_t@=8",
             "@glib_ssize_t@=8",
         ],
-        "@com_github_mjbots_bazel_deps//conditions:sizet_4bytes" : [
+        "@com_github_sidor926_bazel_deps//conditions:sizet_4bytes" : [
             "@glib_size_t@=4",
             "@glib_ssize_t@=4",
         ],
     }) + select({
-        "@com_github_mjbots_bazel_deps//conditions:sizet_long" : [
+        "@com_github_sidor926_bazel_deps//conditions:sizet_long" : [
             "@glib_size_type_define@=long",
 
             "@gsize_modifier@=\"l\"",
@@ -782,7 +782,7 @@ template_file(
             "@gsize_format@=\"lu\"",
             "@gssize_format@=\"li\"",
         ],
-        "@com_github_mjbots_bazel_deps//conditions:sizet_int" : [
+        "@com_github_sidor926_bazel_deps//conditions:sizet_int" : [
             "@glib_size_type_define@=int",
 
             "@gsize_modifier@=\"\"",

@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@com_github_mjbots_bazel_deps//tools/workspace:autoconf_config.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:autoconf_config.bzl",
      "autoconf_config", "autoconf_standard_defines")
 
 package(default_visibility = ["//visibility:public"])
@@ -44,7 +44,7 @@ cc_library(
         "-Wno-unused-function",
         "-Wno-pointer-to-int-cast",
     ] + select({
-        "@com_github_mjbots_bazel_deps//conditions:gcc" : [
+        "@com_github_sidor926_bazel_deps//conditions:gcc" : [
             "-Wno-unused-but-set-variable",
         ],
         "//conditions:default" : [],

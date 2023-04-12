@@ -14,11 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@com_github_mjbots_bazel_deps//tools/workspace:generate_file.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:generate_file.bzl",
      "generate_file")
-load("@com_github_mjbots_bazel_deps//tools/workspace:template_file.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:template_file.bzl",
      "template_file")
-load("@com_github_mjbots_bazel_deps//tools/workspace:autoconf_config.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:autoconf_config.bzl",
      "autoconf_config", "autoconf_standard_defines")
 
 package(default_visibility = ["//visibility:public"])
@@ -303,10 +303,10 @@ cc_library(
         "-Wno-attributes",
         "-Wno-unused-function",
     ] + select({
-        "@com_github_mjbots_bazel_deps//conditions:gcc" : [
+        "@com_github_sidor926_bazel_deps//conditions:gcc" : [
             "-Wno-unused-but-set-variable",
         ],
-        "@com_github_mjbots_bazel_deps//conditions:clang" : [
+        "@com_github_sidor926_bazel_deps//conditions:clang" : [
             "-Wno-enum-conversion",
             "-Wno-parentheses-equality",
             "-Wno-tautological-constant-out-of-range-compare",

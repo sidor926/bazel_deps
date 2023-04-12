@@ -14,9 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@com_github_mjbots_bazel_deps//tools/workspace:autoconf_config.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:autoconf_config.bzl",
      "autoconf_config", "autoconf_standard_defines")
-load("@com_github_mjbots_bazel_deps//tools/workspace:template_file.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:template_file.bzl",
      "template_file")
 
 package(default_visibility = ["//visibility:public"])
@@ -30,7 +30,7 @@ cc_library(
         "include/ffitarget.h",
     ],
     srcs = select({
-        "@com_github_mjbots_bazel_deps//conditions:x86_64" : [
+        "@com_github_sidor926_bazel_deps//conditions:x86_64" : [
             "src/x86/ffi64.c",
             "src/x86/ffiw64.c",
             "src/x86/win64.S",
@@ -40,7 +40,7 @@ cc_library(
             "src/x86/internal64.h",
             "src/x86/asmnames.h",
         ],
-        "@com_github_mjbots_bazel_deps//conditions:arm" : [
+        "@com_github_sidor926_bazel_deps//conditions:arm" : [
             "src/arm/sysv.S",
             "src/arm/ffi.c",
             "src/arm/internal.h",
@@ -66,10 +66,10 @@ cc_library(
 genrule(
     name = "ffitarget",
     srcs = select({
-        "@com_github_mjbots_bazel_deps//conditions:x86_64" : [
+        "@com_github_sidor926_bazel_deps//conditions:x86_64" : [
             "src/x86/ffitarget.h",
         ],
-        "@com_github_mjbots_bazel_deps//conditions:arm" : [
+        "@com_github_sidor926_bazel_deps//conditions:arm" : [
             "src/arm/ffitarget.h",
         ],
     }),
@@ -83,11 +83,11 @@ autoconf_config(
     name = "ffiprivate/fficonfig.h",
     src = "fficonfig.h.in",
     defines = autoconf_standard_defines + select({
-        "@com_github_mjbots_bazel_deps//conditions:x86_64" : [
+        "@com_github_sidor926_bazel_deps//conditions:x86_64" : [
             "HAVE_AS_X86_64_UNWIND_SECTION_TYPE",
             "HAVE_AS_X86_PCREL",
         ],
-        "@com_github_mjbots_bazel_deps//conditions:arm" : [
+        "@com_github_sidor926_bazel_deps//conditions:arm" : [
         ],
     }) + [
         "EH_FRAME_FLAGS=\"a\"",
@@ -102,10 +102,10 @@ template_file(
     name = "include/ffi.h",
     src = "include/ffi.h.in",
     substitution_list = select({
-        "@com_github_mjbots_bazel_deps//conditions:x86_64" : [
+        "@com_github_sidor926_bazel_deps//conditions:x86_64" : [
             "@TARGET@=X86_64",
         ],
-        "@com_github_mjbots_bazel_deps//conditions:arm" : [
+        "@com_github_sidor926_bazel_deps//conditions:arm" : [
             "@TARGET@=ARM",
         ],
     }) +  [

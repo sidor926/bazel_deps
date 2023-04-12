@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@com_github_mjbots_bazel_deps//tools/workspace:autoconf_config.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:autoconf_config.bzl",
      "autoconf_config", "autoconf_standard_defines")
 
 package(default_visibility = ["//visibility:public"])
@@ -60,12 +60,12 @@ cc_library(
         "pngwtran.c",
         "pngwutil.c",
     ] + select({
-        "@com_github_mjbots_bazel_deps//conditions:arm" : [
+        "@com_github_sidor926_bazel_deps//conditions:arm" : [
             "arm/arm_init.c",
             "arm/filter_neon.S",
             "arm/filter_neon_intrinsics.c",
         ],
-        "@com_github_mjbots_bazel_deps//conditions:x86_64" : [
+        "@com_github_sidor926_bazel_deps//conditions:x86_64" : [
             "intel/filter_sse2_intrinsics.c",
             "intel/intel_init.c",
         ],
@@ -84,10 +84,10 @@ autoconf_config(
     package = "libpng",
     version = "1.6.35",
     defines = autoconf_standard_defines + select({
-        "@com_github_mjbots_bazel_deps//conditions:arm" : [
+        "@com_github_sidor926_bazel_deps//conditions:arm" : [
             "PNG_ARM_NEON_OPT=0",
         ],
-        "@com_github_mjbots_bazel_deps//conditions:x86_64" : [
+        "@com_github_sidor926_bazel_deps//conditions:x86_64" : [
             "PNG_INTEL_SSE_OPT",
         ],
     }),

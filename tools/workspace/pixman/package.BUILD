@@ -14,9 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@com_github_mjbots_bazel_deps//tools/workspace:autoconf_config.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:autoconf_config.bzl",
      "autoconf_config", "autoconf_standard_defines")
-load("@com_github_mjbots_bazel_deps//tools/workspace:template_file.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:template_file.bzl",
      "template_file")
 
 package(default_visibility = ["//visibility:public"])
@@ -81,7 +81,7 @@ cc_library(
         "-I$(GENDIR)/external/pixman/private",
         "-Wno-unused-local-typedefs",
     ] + select({
-        "@com_github_mjbots_bazel_deps//conditions:clang" : [
+        "@com_github_sidor926_bazel_deps//conditions:clang" : [
             "-Wno-unused-const-variable",
             "-Wno-tautological-constant-out-of-range-compare",
         ],

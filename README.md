@@ -26,7 +26,7 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 def bazel_deps_repository():
     commit = "XXX"
     http_archive(
-        name = "com_github_mjbots_bazel_deps",
+        name = "com_github_sidor926_bazel_deps",
         url = "https://github.com/mjbots/bazel_deps/archive/{}.zip".format(commit),
         # Try the following empty sha256 hash first, then replace with whatever
         # bazel says it is looking for once it complains.
@@ -56,7 +56,7 @@ load("//tools/workspace:default.bzl", "add_default_repositories")
 
 add_default_repositories()
 
-load("@com_github_mjbots_bazel_deps//tools/workspace:default.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:default.bzl",
      bazel_deps_add = "add_default_repositories")
 bazel_deps_add()
 ```

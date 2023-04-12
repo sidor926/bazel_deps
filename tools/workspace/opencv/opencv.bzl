@@ -14,9 +14,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@com_github_mjbots_bazel_deps//tools/workspace:generate_file.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:generate_file.bzl",
      "generate_file")
-load("@com_github_mjbots_bazel_deps//tools/workspace:template_file.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:template_file.bzl",
      "template_file")
 
 _OPENCV_COPTS = [
@@ -89,9 +89,9 @@ def opencv_base(config = None):
     generate_file(
         name = "cv_cpu_config.h",
         content = select({
-            "@com_github_mjbots_bazel_deps//conditions:arm" :
+            "@com_github_sidor926_bazel_deps//conditions:arm" :
             _format_config("armeabihf", config.get("opts", [])),
-            "@com_github_mjbots_bazel_deps//conditions:x86_64" :
+            "@com_github_sidor926_bazel_deps//conditions:x86_64" :
             _format_config("x86_64", config.get("opts", [])),
         }),
     )

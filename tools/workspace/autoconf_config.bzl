@@ -697,14 +697,14 @@ autoconf_standard_defines = [
     "_POSIX_PTHREAD_SEMANTICS",
 
 ] + select({
-    "@com_github_mjbots_bazel_deps//conditions:long_double_16bytes" : [
+    "@com_github_sidor926_bazel_deps//conditions:long_double_16bytes" : [
         "SIZEOF_LONG_DOUBLE=16",
     ],
-    "@com_github_mjbots_bazel_deps//conditions:long_double_8bytes" : [
+    "@com_github_sidor926_bazel_deps//conditions:long_double_8bytes" : [
         "SIZEOF_LONG_DOUBLE=8",
     ],
 }) + select({
-    "@com_github_mjbots_bazel_deps//conditions:long_8bytes" : [
+    "@com_github_sidor926_bazel_deps//conditions:long_8bytes" : [
         "ALIGNOF_UNSIGNED_LONG=8",
         "SIZEOF_LONG=8",
         "SIZEOF_VOID_P=8",
@@ -714,7 +714,7 @@ autoconf_standard_defines = [
         "SIZEOF_UINTPTR_T=8",
         "SIZEOF_OFF_T=8",
     ],
-    "@com_github_mjbots_bazel_deps//conditions:long_4bytes" : [
+    "@com_github_sidor926_bazel_deps//conditions:long_4bytes" : [
         "ALIGNOF_UNSIGNED_LONG=4",
         "SIZEOF_LONG=4",
         "SIZEOF_VOID_P=4",
@@ -725,16 +725,16 @@ autoconf_standard_defines = [
         "SIZEOF_OFF_T=4",
     ],
 }) + select({
-    "@com_github_mjbots_bazel_deps//conditions:sizet_8bytes" : [
+    "@com_github_sidor926_bazel_deps//conditions:sizet_8bytes" : [
         "SIZEOF_SIZE_T=8",
         "SIZEOFSSIZE_T=8",
     ],
-    "@com_github_mjbots_bazel_deps//conditions:sizet_4bytes" : [
+    "@com_github_sidor926_bazel_deps//conditions:sizet_4bytes" : [
         "SIZEOF_SIZE_T=4",
         "SIZEOFSSIZE_T=4",
     ],
 }) + select({
-    "@com_github_mjbots_bazel_deps//conditions:x86_64" : [
+    "@com_github_sidor926_bazel_deps//conditions:x86_64" : [
         "HAVE_DECL__I386__=0",
         "HAVE_DECL__X86_64__",
         "HAVE_CPU_X86_64",
@@ -748,11 +748,11 @@ autoconf_standard_defines = [
         "HAVE_EMMINTRIN_H",
         "HAVE_SMMINTRIN_H",
     ],
-    "@com_github_mjbots_bazel_deps//conditions:arm" : [
+    "@com_github_sidor926_bazel_deps//conditions:arm" : [
         "HAVE_CPU_ARM",
         "TARGET_CPU=\"ARM\"",
     ],
-    "@com_github_mjbots_bazel_deps//conditions:aarch64" : [
+    "@com_github_sidor926_bazel_deps//conditions:aarch64" : [
         "HAVE_CPU_AARCH64",
         "TARGET_CPU=\"AARCH64\"",
     ],

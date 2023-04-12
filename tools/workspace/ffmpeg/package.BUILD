@@ -14,13 +14,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@com_github_mjbots_bazel_deps//tools/workspace:template_file.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:template_file.bzl",
      "template_file")
-load("@com_github_mjbots_bazel_deps//tools/workspace:generate_file.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:generate_file.bzl",
      "generate_file")
-load("@com_github_mjbots_bazel_deps//tools/workspace/ffmpeg:config.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace/ffmpeg:config.bzl",
      "flatten_config")
-load("@com_github_mjbots_bazel_deps//tools/workspace/nasm:nasm.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace/nasm:nasm.bzl",
      "nasm_objects")
 
 # TODO(jpieper): This could be refactored even more for reduced
@@ -70,10 +70,10 @@ COMMON_COPTS = [
     "-Wno-switch",
     "-Wno-unused-variable",
 ] + select({
-    "@com_github_mjbots_bazel_deps//conditions:gcc" : [
+    "@com_github_sidor926_bazel_deps//conditions:gcc" : [
         "-Wno-discarded-qualifiers",
     ],
-    "@com_github_mjbots_bazel_deps//conditions:clang" : [
+    "@com_github_sidor926_bazel_deps//conditions:clang" : [
         "-Wno-shift-negative-value",
         "-Wno-incompatible-pointer-types-discards-qualifiers",
         "-Wno-constant-conversion",
@@ -93,7 +93,7 @@ COMMON_COPTS = [
 BIN_LINKOPTS = [
     "-Wl,-Bsymbolic",
 ] + select({
-    "@com_github_mjbots_bazel_deps//conditions:clang" : [
+    "@com_github_sidor926_bazel_deps//conditions:clang" : [
         "-Wl,-znotext",
     ],
     "//conditions:default" : [],
@@ -126,8 +126,8 @@ cc_binary(
     name = "libavutil.so",
     linkshared = True,
     srcs = @AVUTIL_SOURCES@ +select({
-        "@com_github_mjbots_bazel_deps//conditions:arm" : @AVUTIL_ARM_SOURCES@,
-        "@com_github_mjbots_bazel_deps//conditions:x86_64" : (@AVUTIL_X86_SOURCES@ + [":avutil_x86asm"]),
+        "@com_github_sidor926_bazel_deps//conditions:arm" : @AVUTIL_ARM_SOURCES@,
+        "@com_github_sidor926_bazel_deps//conditions:x86_64" : (@AVUTIL_X86_SOURCES@ + [":avutil_x86asm"]),
     }),
     copts = COMMON_COPTS,
     linkopts = BIN_LINKOPTS + [
@@ -163,8 +163,8 @@ cc_binary(
     name = "libswscale.so",
     linkshared = True,
     srcs = @SWSCALE_SOURCES@ + select({
-        "@com_github_mjbots_bazel_deps//conditions:arm" : @SWSCALE_ARM_SOURCES@,
-        "@com_github_mjbots_bazel_deps//conditions:x86_64" : (@SWSCALE_X86_SOURCES@ + [":swscale_x86asm"]),
+        "@com_github_sidor926_bazel_deps//conditions:arm" : @SWSCALE_ARM_SOURCES@,
+        "@com_github_sidor926_bazel_deps//conditions:x86_64" : (@SWSCALE_X86_SOURCES@ + [":swscale_x86asm"]),
     }),
     copts = COMMON_COPTS,
     deps = [
@@ -189,8 +189,8 @@ cc_binary(
     name = "libswresample.so",
     linkshared = True,
     srcs = @SWRESAMPLE_SOURCES@ + select({
-        "@com_github_mjbots_bazel_deps//conditions:arm" : @SWRESAMPLE_ARM_SOURCES@,
-        "@com_github_mjbots_bazel_deps//conditions:x86_64" : (@SWRESAMPLE_X86_SOURCES@ + [":swresample_x86asm"]),
+        "@com_github_sidor926_bazel_deps//conditions:arm" : @SWRESAMPLE_ARM_SOURCES@,
+        "@com_github_sidor926_bazel_deps//conditions:x86_64" : (@SWRESAMPLE_X86_SOURCES@ + [":swresample_x86asm"]),
     }),
     copts = COMMON_COPTS,
     deps = [
@@ -220,8 +220,8 @@ cc_binary(
         "pthread_slice.c",
         "pthread_frame.c",
     ]] + select({
-        "@com_github_mjbots_bazel_deps//conditions:arm" : @AVCODEC_ARM_SOURCES@,
-        "@com_github_mjbots_bazel_deps//conditions:x86_64" : (@AVCODEC_X86_SOURCES@ + [":avcodec_x86asm"]),
+        "@com_github_sidor926_bazel_deps//conditions:arm" : @AVCODEC_ARM_SOURCES@,
+        "@com_github_sidor926_bazel_deps//conditions:x86_64" : (@AVCODEC_X86_SOURCES@ + [":avcodec_x86asm"]),
     }),
     copts = COMMON_COPTS + [
         "-Iexternal/ffmpeg/libavcodec/",
@@ -250,8 +250,8 @@ cc_binary(
     name = "libavformat.so",
     linkshared = True,
     srcs = @AVFORMAT_SOURCES@ + select({
-        "@com_github_mjbots_bazel_deps//conditions:arm" : @AVFORMAT_ARM_SOURCES@,
-        "@com_github_mjbots_bazel_deps//conditions:x86_64" : @AVFORMAT_X86_SOURCES@,
+        "@com_github_sidor926_bazel_deps//conditions:arm" : @AVFORMAT_ARM_SOURCES@,
+        "@com_github_sidor926_bazel_deps//conditions:x86_64" : @AVFORMAT_X86_SOURCES@,
     }),
     copts = COMMON_COPTS + [
         "-Iexternal/ffmpeg/libavcodec",
@@ -283,8 +283,8 @@ cc_binary(
     srcs = @AVFILTER_SOURCES@ + ["libavfilter/" + x for x in [
         "pthread.c",
     ]] + select({
-        "@com_github_mjbots_bazel_deps//conditions:arm" : @AVFILTER_ARM_SOURCES@,
-        "@com_github_mjbots_bazel_deps//conditions:x86_64" : (@AVFILTER_X86_SOURCES@ + [":avfilter_x86asm"]),
+        "@com_github_sidor926_bazel_deps//conditions:arm" : @AVFILTER_ARM_SOURCES@,
+        "@com_github_sidor926_bazel_deps//conditions:x86_64" : (@AVFILTER_X86_SOURCES@ + [":avfilter_x86asm"]),
     }),
     copts = COMMON_COPTS + [
         "-Iexternal/ffmpeg/libavfilter",
@@ -331,7 +331,7 @@ cc_binary(
 [nasm_objects(
     name = module + "_x86asm",
     srcs = select({
-        "@com_github_mjbots_bazel_deps//conditions:x86_64" : asm_files,
+        "@com_github_sidor926_bazel_deps//conditions:x86_64" : asm_files,
         "//conditions:default" : [],
     }),
     textual_hdrs = [
@@ -408,7 +408,7 @@ template_file(
     name = "private/config.h",
     src = "private/config.h.in",
     substitution_list = select({
-        "@com_github_mjbots_bazel_deps//conditions:arm" : ([
+        "@com_github_sidor926_bazel_deps//conditions:arm" : ([
             "#define ARCH_ARM 0=#define ARCH_ARM 1",
         ] + [
             "#define HAVE_{x} 0=#define HAVE_{x} 1".format(x=x)
@@ -417,7 +417,7 @@ template_file(
             "#define HAVE_{x}_EXTERNAL 0=#define HAVE_{x}_EXTERNAL 1".format(x=x)
             for x in ARM_OPTS
         ]),
-        "@com_github_mjbots_bazel_deps//conditions:x86_64" : ([
+        "@com_github_sidor926_bazel_deps//conditions:x86_64" : ([
             "#define ARCH_X86 0=#define ARCH_X86 1",
             "#define ARCH_X86_64 0=#define ARCH_X86_64 1",
             "#define HAVE_X86ASM 0=#define HAVE_X86ASM 1",

@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@com_github_mjbots_bazel_deps//tools/workspace:autoconf_config.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:autoconf_config.bzl",
      "autoconf_config", "autoconf_standard_defines")
 
 package(default_visibility = ["//visibility:public"])
@@ -127,10 +127,10 @@ cc_library(
         "-I$(GENDIR)/external/libxcb/xcb",
         "-Iexternal/libxcb/src",
     ] + select({
-    "@com_github_mjbots_bazel_deps//conditions:gcc" : [
+    "@com_github_sidor926_bazel_deps//conditions:gcc" : [
         "-Wno-unused-but-set-variable",
     ],
-    "@com_github_mjbots_bazel_deps//conditions:clang" : [
+    "@com_github_sidor926_bazel_deps//conditions:clang" : [
         "-Wno-macro-redefined",
         "-Wno-unused-result",
         "-Wno-unused-parameter",

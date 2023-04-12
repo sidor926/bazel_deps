@@ -16,9 +16,9 @@
 
 package(default_visibility = ["//visibility:public"])
 
-load("@com_github_mjbots_bazel_deps//tools/workspace:template_file.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:template_file.bzl",
      "template_file")
-load("@com_github_mjbots_bazel_deps//tools/workspace:generate_file.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:generate_file.bzl",
      "generate_file")
 
 template_file(

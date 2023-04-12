@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@com_github_mjbots_bazel_deps//tools/workspace/opencv:opencv.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace/opencv:opencv.bzl",
      "opencv_base", "opencv_module")
 
 package(default_visibility = ["//visibility:public"])

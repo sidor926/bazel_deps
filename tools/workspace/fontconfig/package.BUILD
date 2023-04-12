@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@com_github_mjbots_bazel_deps//tools/workspace:autoconf_config.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:autoconf_config.bzl",
      "autoconf_config", "autoconf_standard_defines")
 
 package(default_visibility = ["//visibility:public"])
@@ -81,7 +81,7 @@ cc_library(
         "-DHAVE_CONFIG_H",
         "-I$(GENDIR)/external/fontconfig/src",
     ] + select({
-        "@com_github_mjbots_bazel_deps//conditions:clang" : [
+        "@com_github_sidor926_bazel_deps//conditions:clang" : [
             "-Wno-non-literal-null-conversion",
         ],
         "//conditions:default" : [],

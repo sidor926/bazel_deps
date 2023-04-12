@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-load("@com_github_mjbots_bazel_deps//tools/workspace:makefile.bzl", "makefile_parse", "format_makefile")
+load("@com_github_sidor926_bazel_deps//tools/workspace:makefile.bzl", "makefile_parse", "format_makefile")
 
 def _impl(repository_ctx):
     repository_ctx.download_and_extract(

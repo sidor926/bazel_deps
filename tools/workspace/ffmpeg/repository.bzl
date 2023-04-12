@@ -15,8 +15,8 @@
 # limitations under the License.
 
 load("@bazel_tools//tools/build_defs/repo:utils.bzl", "patch")
-load("@com_github_mjbots_bazel_deps//tools/workspace:makefile.bzl", "makefile_parse", "format_makefile")
-load("@com_github_mjbots_bazel_deps//tools/workspace/ffmpeg:config.bzl",
+load("@com_github_sidor926_bazel_deps//tools/workspace:makefile.bzl", "makefile_parse", "format_makefile")
+load("@com_github_sidor926_bazel_deps//tools/workspace/ffmpeg:config.bzl",
      "flatten_config")
 
 CONFIG_PREFIXES = {
